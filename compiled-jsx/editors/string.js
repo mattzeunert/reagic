@@ -1,8 +1,8 @@
 var React = require("react");
 
-var reactComponent = React.createClass({
+var reactComponent = React.createClass({displayName: "reactComponent",
     render: function(){
-        return <div>aaa</div>
+        return React.createElement("div", null, "aaa")
     }
 })
 

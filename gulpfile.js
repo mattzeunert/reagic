@@ -19,8 +19,10 @@ var jasminePhantomJs = require('gulp-jasmine2-phantomjs');
 // but include in your application deployment
 var dependencies = [
 	'react',
-  'react/addons'
+    'react/addons'
 ];
+
+
 
 var browserifyTask = function (options) {
 
@@ -145,6 +147,16 @@ var cssTask = function (options) {
     }
 }
 
+var react = require('gulp-react');
+var reactTask = function () {
+
+
+    return gulp.src('app/**/*.js')
+        .pipe(react())
+        .pipe(gulp.dest('compiled-jsx'));
+
+};
+
 // Starts our development workflow
 gulp.task('default', function () {
 
@@ -154,6 +166,9 @@ gulp.task('default', function () {
     dest: './build'
   });
 
+
+reactTask();
+
   cssTask({
     development: true,
     src: './styles/**/*.css',
@@ -161,6 +176,8 @@ gulp.task('default', function () {
   });
 
 });
+
+
 
 gulp.task('deploy', function () {
 
