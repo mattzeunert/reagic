@@ -4,17 +4,16 @@ var React = require('react/addons');
 
 describe("String Editor", function(){
     it("Renders something", function(){
-        var data = {
-            greeting: "hi"
-        };
+        var data = "hi";
         var schema = {
-            greeting: {
-                title: "Greeting"
-            }
-        }
+            title: "Greeting"
+        };
 
-        var domNode = React.addons.TestUtils.renderIntoDocument(<StringEditor />).getDOMNode();
-        expect(domNode.outerHTML).toBe("whatever");
+        var domNode = React.addons.TestUtils.renderIntoDocument(
+            <StringEditor data={data} schema={schema}/>
+        ).getDOMNode();
 
+        expect(domNode.querySelector("input").value).toBe(data);
+        expect(domNode.querySelector("label").innerHTML).toBe(schema.title);
     });
 });

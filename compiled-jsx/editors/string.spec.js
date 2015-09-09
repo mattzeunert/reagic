@@ -4,6 +4,15 @@ var React = require('react/addons');
 
 describe("String Editor", function(){
     it("Renders something", function(){
-        React.addons.TestUtils.renderIntoDocument(React.createElement(StringEditor, null));
+        var data = "hi";
+        var schema = {
+            title: "Greeting"
+        };
+
+        var domNode = React.addons.TestUtils.renderIntoDocument(
+            React.createElement(StringEditor, {data: data, schema: schema})
+        ).getDOMNode();
+        expect(domNode.outerHTML).toBe("whatever");
+
     });
 });

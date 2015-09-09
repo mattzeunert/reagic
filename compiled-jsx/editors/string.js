@@ -2,7 +2,10 @@ var React = require("react");
 
 var reactComponent = React.createClass({displayName: "reactComponent",
     render: function(){
-        return React.createElement("div", null, "aaa")
+        return React.createElement("div", null, 
+            React.createElement("label", null, this.props.schema.title), 
+            React.createElement("input", {type: "text", value: this.props.data})
+        )
     }
 })
 

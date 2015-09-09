@@ -2,7 +2,10 @@ var React = require("react");
 
 var reactComponent = React.createClass({
     render: function(){
-        return <div>aaa</div>
+        return <div>
+            <label>{this.props.schema.title}</label>
+            <input type="text" value={this.props.data}></input>
+        </div>
     }
 })
 
