@@ -7,7 +7,8 @@ module.exports =  {
             var value = data[key];
             var editor = Reagic.findEditorForData(value);
             schema[key] = {
-                editor: editor.name
+                editor: editor.name,
+                title: key
             }
         }
 

@@ -8,5 +8,6 @@ describe("Schema Generation", function(){
 
         var schema = schemaGenerator.generateSchema(data);
         expect(schema.greeting.editor).toBe("string");
+        expect(schema.greeting.title).toBe("greeting");
     });
 })
