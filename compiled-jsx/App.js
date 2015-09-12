@@ -3,9 +3,13 @@ var SchemaGenerator = require("./schema-generator.js");
 
 var App = React.createClass({displayName: "App",
 	render: function() {
+    var data = {
+      greeting: "Hi"
+    }
+
 		return (
 			React.createElement("div", null, 
-        "sth"
+        React.createElement(ReagicForm, {data: data})
       )
 		);
 	}
