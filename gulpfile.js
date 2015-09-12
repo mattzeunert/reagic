@@ -150,11 +150,20 @@ var cssTask = function (options) {
 var react = require('gulp-react');
 var reactTask = function () {
 
+    function doIt(){
+        gulp.src('app/**/*.js')
+            .pipe(react())
+            .pipe(gulp.dest('compiled-jsx'));
+    }
 
-    return gulp.src('app/**/*.js')
-        .pipe(react())
-        .pipe(gulp.dest('compiled-jsx'));
 
+
+    doIt();
+
+    var watch = require('gulp-watch')
+    watch("app/**/*.js", function(){
+        doIt();
+    });
 };
 
 // Starts our development workflow

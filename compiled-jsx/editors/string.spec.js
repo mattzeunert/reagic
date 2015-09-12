@@ -12,7 +12,8 @@ describe("String Editor", function(){
         var domNode = React.addons.TestUtils.renderIntoDocument(
             React.createElement(StringEditor, {data: data, schema: schema})
         ).getDOMNode();
-        expect(domNode.outerHTML).toBe("whatever");
 
+        expect(domNode.querySelector("input").value).toBe(data);
+        expect(domNode.querySelector("label").innerHTML).toBe(schema.title);
     });
 });
