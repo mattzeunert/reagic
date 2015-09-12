@@ -5,7 +5,8 @@ var SchemaGenerator = require("./schema-generator.js");
 var App = React.createClass({displayName: "App",
 	render: function() {
     var data = {
-      greeting: "Hi"
+      greeting: "Hi",
+      title: "How to bake a cake"
     }
 
 		return (

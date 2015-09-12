@@ -1,3 +1,8 @@
-body {
-	background-color: #EAEAEA;
+.reagic-string {
+    margin-bottom: 8px;
+}
+
+.reagic-string label {
+    display: block;
+    margin-bottom: 2px;
 }
