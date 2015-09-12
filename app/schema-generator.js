@@ -1,4 +1,5 @@
 var Reagic = require("./reagic.js");
+var generateTitle = require("./generate-title");
 
 module.exports =  {
     generateSchema: function(data){
@@ -8,7 +9,7 @@ module.exports =  {
             var editor = Reagic.findEditorForData(value);
             schema[key] = {
                 editor: editor.name,
-                title: key
+                title: generateTitle(key)
             }
         }
 
