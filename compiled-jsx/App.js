@@ -1,4 +1,5 @@
 var React = require('react');
+var ReagicForm = require("./reagic-form.js");
 var SchemaGenerator = require("./schema-generator.js");
 
 var App = React.createClass({displayName: "App",
