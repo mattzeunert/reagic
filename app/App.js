@@ -7,7 +7,8 @@ var App = React.createClass({
         return {
             data:{
                 greeting: "Hi",
-                title: "How to bake a cake"
+                title: "How to bake a cake",
+                age: 19
             }
         };
     },

@@ -2,11 +2,18 @@ import React from "react";
 var SchemaGenerator = require("./schema-generator.js");
 var Reagic = require("./reagic.js");
 
-class reactComponent {
+class reactComponent extends React.Component {
+    componentWillMount() {
+        // Schema has to be in state, as data can become invalid
+        this.setState({
+            schema: SchemaGenerator.generateSchema(this.props.data)
+        })
+    }
     render(){
         var self = this;
         var data = this.props.data;
-        var schema = SchemaGenerator.generateSchema(data);
+        var schema = this.state.schema;
+
         var fields = [];
         for (var key in schema){
             (function(key){

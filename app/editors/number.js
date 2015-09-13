@@ -2,7 +2,7 @@ var React = require("react");
 
 var reactComponent = React.createClass({
     render: function(){
-        return <div className="reagic-string">
+        return <div className="reagic-generic">
             <label>{this.props.schema.title}</label>
             <input
                 type="text"
@@ -14,7 +14,10 @@ var reactComponent = React.createClass({
     onChange: function(){
         var onChangeHandler = this.props.onChange;
         var newData = React.findDOMNode(this.refs.input).value;
-        onChangeHandler(newData);
+        onChangeHandler(this.parseValue(newData));
+    },
+    parseValue: function(newData){
+      return newData === "" ? null : parseFloat(newData);
     }
 })
 

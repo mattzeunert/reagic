@@ -1,8 +1,8 @@
-.reagic-string {
+.reagic-generic {
     margin-bottom: 8px;
 }
 
-.reagic-string label {
+.reagic-generic label {
     display: block;
     margin-bottom: 2px;
 }

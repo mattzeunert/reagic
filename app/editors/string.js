@@ -2,7 +2,7 @@ var React = require("react");
 
 var reactComponent = React.createClass({
     render: function(){
-        return <div className="reagic-string">
+        return <div className="reagic-generic">
             <label>{this.props.schema.title}</label>
             <input
                 type="text"
