@@ -29,6 +29,8 @@ var reactComponent = React.createClass({
         </div>
     },
     onChange: function(newData){
+        // Ever so slightly inefficient deep copy
+        newData = JSON.parse(JSON.stringify(newData));
         this.props.onChange(newData);
     }
 })
