@@ -1,6 +1,6 @@
 var React = require("react");
 var StringEditor = require("./string.js").reactComponent;
-var React = require('react/addons');
+var renderToDOMNode = require("../render-to-dom-node.js");
 
 describe("String Editor", function(){
     var data,
@@ -14,11 +14,11 @@ describe("String Editor", function(){
             title: "Greeting"
         };
 
-        domNode = React.addons.TestUtils.renderIntoDocument(
+        domNode = renderToDOMNode(
             <StringEditor data={data} schema={schema} onChange={function(){
                 onChange.apply(this, arguments);
             }}/>
-        ).getDOMNode();
+        );
     });
 
     it("Renders label and input field", function(){

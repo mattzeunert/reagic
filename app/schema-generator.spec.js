@@ -9,4 +9,13 @@ describe("Schema Generation", function(){
         var schema = schemaGenerator.generateSchema(data);
         expect(schema.greeting.editor).toBe("string");
     });
+
+    it("Knows that numbers should use the number Editor", function(){
+        var data = {
+            age: 57
+        };
+
+        var schema = schemaGenerator.generateSchema(data);
+        expect(schema.age.editor).toBe("number");
+    });
 })
