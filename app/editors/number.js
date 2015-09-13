@@ -1,28 +1,34 @@
-var React = require("react");
+import React from "react";
+var isNumeric  = require("../validators/is-numeric.js");
+var ReagicEditor = require("./reagic-editor.js");
 
-var reactComponent = React.createClass({
-    render: function(){
+class reactComponent extends ReagicEditor {
+    render(){
+        var validationMessage = this.checkValueIsValid(this.props.data) ? "Valid" : "Invalid";
+
         return <div className="reagic-generic">
             <label>{this.props.schema.title}</label>
+            {validationMessage}
             <input
                 type="text"
                 value={this.props.data}
-                onChange={this.onChange}
+                onChange={() => this.onChange()}
                 ref="input"></input>
         </div>
-    },
-    onChange: function(){
+    }
+    onChange(){
         var onChangeHandler = this.props.onChange;
         var newData = React.findDOMNode(this.refs.input).value;
-        onChangeHandler(this.parseValue(newData));
-    },
-    parseValue: function(newData){
-      return newData === "" ? null : parseFloat(newData);
+        if (isNumeric()(newData)) {
+            newData = parseFloat(newData);
+        }
+        onChangeHandler(newData);
     }
-})
+}
 
 module.exports = {
     name: "number",
+    defaultValidators: [isNumeric()],
     shouldBeUsedForData: function(data){
         return typeof data === "number";
     },

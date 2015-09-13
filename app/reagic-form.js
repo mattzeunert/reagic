@@ -5,9 +5,9 @@ var Reagic = require("./reagic.js");
 class reactComponent extends React.Component {
     componentWillMount() {
         // Schema has to be in state, as data can become invalid
-        this.setState({
-            schema: SchemaGenerator.generateSchema(this.props.data)
-        })
+        var schema = SchemaGenerator.generateSchema(this.props.data);
+        console.log("Schema", schema);
+        this.setState({schema})
     }
     render(){
         var self = this;
@@ -21,9 +21,9 @@ class reactComponent extends React.Component {
                 var editor = Reagic.getEditorByName(value.editor).reactComponent;
                 fields.push(React.createElement(editor, {
                     data: data[key],
+                    key: key,
                     schema: value,
                     onChange: function(newDataValue){
-                        console.log("change", arguments)
                         data[key] = newDataValue;
                         self.onChange(data);
                     }

@@ -7,9 +7,15 @@ module.exports =  {
         for (var key in data) {
             var value = data[key];
             var editor = Reagic.findEditorForData(value);
+
+            var validators = editor.defaultValidators;
+            if (validators === undefined){
+                validators = [];
+            }
             schema[key] = {
                 editor: editor.name,
-                title: generateTitle(key)
+                title: generateTitle(key),
+                validators: validators
             }
         }
 

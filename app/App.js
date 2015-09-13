@@ -31,7 +31,7 @@ var App = React.createClass({
                             <ReagicForm data={data} onChange={this.onChange} />
                         </td>
                         <td style={fiftyPercentWidth}>
-                            <textarea style={textareaStyles} value={stringifiedData}></textarea>
+                            <textarea style={textareaStyles} onChange={function(){}} value={stringifiedData}></textarea>
                         </td>
                     </tr>
                 </table>
