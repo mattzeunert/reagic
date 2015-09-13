@@ -22,7 +22,9 @@ class reactComponent extends ReagicEditor {
         if (isNumeric()(newData)) {
             newData = parseFloat(newData);
         }
-        onChangeHandler(newData);
+        onChangeHandler(newData, {
+            isValid: this.checkValueIsValid(newData)
+        });
     }
 }
 

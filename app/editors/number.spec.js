@@ -27,13 +27,25 @@ describe("Number Editor", function(){
     });
 
     it("Calls onChange with new data when the value is edited", function(done){
-        onChange = function(newData){
-            expect(newData).toBe(66);
+        onChange = function(data){
+            expect(data).toBe(66);
             done();
         }
 
         var input = domNode.querySelector("input");
         input.value = 66;
+        React.addons.TestUtils.Simulate.change(input);
+    });
+
+    it("Detects an empty fields as an invalid value", function(done){
+        onChange = function(data, info){
+            expect(data).toBe("");
+            expect(info.isValid).toBe(true);
+            done();
+        }
+
+        var input = domNode.querySelector("input");
+        input.value = "";
         React.addons.TestUtils.Simulate.change(input);
     });
 });

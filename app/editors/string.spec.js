@@ -27,8 +27,9 @@ describe("String Editor", function(){
     });
 
     it("Calls onChange with new data when the value is edited", function(done){
-        onChange = function(newData){
+        onChange = function(newData, info){
             expect(newData).toBe("New Greeting");
+            expect(info.isValid).toBe(true);
             done();
         }
 
