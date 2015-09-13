@@ -1,9 +1,9 @@
-var React = require("react");
+import React from "react";
 var SchemaGenerator = require("./schema-generator.js");
 var Reagic = require("./reagic.js");
 
-var reactComponent = React.createClass({
-    render: function(){
+class reactComponent {
+    render(){
         var self = this;
         var data = this.props.data;
         var schema = SchemaGenerator.generateSchema(data);
@@ -27,12 +27,12 @@ var reactComponent = React.createClass({
         return <div>
             {fields}
         </div>
-    },
-    onChange: function(newData){
+    }
+    onChange(newData){
         // Ever so slightly inefficient deep copy
         newData = JSON.parse(JSON.stringify(newData));
         this.props.onChange(newData);
     }
-})
+}
 
 module.exports = reactComponent;

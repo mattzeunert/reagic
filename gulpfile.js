@@ -147,12 +147,12 @@ var cssTask = function (options) {
     }
 }
 
-var react = require('gulp-react');
+var babel = require("gulp-babel");
 var reactTask = function () {
 
     function doIt(){
         gulp.src('app/**/*.js')
-            .pipe(react())
+            .pipe(babel())
             .pipe(gulp.dest('compiled-jsx'));
     }
 
