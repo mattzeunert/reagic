@@ -1,6 +1,13 @@
 import React from "react";
 
 class ReagicEditor extends React.Component {
+    render (){
+        var validationMessage = this.checkValueIsValid(this.props.data) ? "Valid" : "Invalid";
+        return <div className="reagic-generic">
+            <label>{this.props.schema.title}</label>
+            {this.renderEditor()}
+        </div>
+    }
     checkValueIsValid (value){
         var validationResult = this.validateValue(value);
         return validationResult.isValid;

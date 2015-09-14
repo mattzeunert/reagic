@@ -3,18 +3,14 @@ var isNumeric  = require("../validators/is-numeric.js");
 var ReagicEditor = require("./reagic-editor.js");
 
 class reactComponent extends ReagicEditor {
-    render(){
+    renderEditor(){
         var validationMessage = this.checkValueIsValid(this.props.data) ? "Valid" : "Invalid";
 
-        return <div className="reagic-generic">
-            <label>{this.props.schema.title}</label>
-            {validationMessage}
-            <input
+        return  <input
                 type="text"
                 value={this.props.data}
                 onChange={() => this.onChange()}
                 ref="input"></input>
-        </div>
     }
     onChange(){
         var onChangeHandler = this.props.onChange;
