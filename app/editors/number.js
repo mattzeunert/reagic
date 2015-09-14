@@ -4,13 +4,11 @@ var ReagicEditor = require("./reagic-editor.js");
 
 class reactComponent extends ReagicEditor {
     renderEditor(){
-        var validationMessage = this.checkValueIsValid(this.props.data) ? "Valid" : "Invalid";
-
         return  <input
-                type="text"
-                value={this.props.data}
-                onChange={() => this.onChange()}
-                ref="input"></input>
+                    type="text"
+                    value={this.props.data}
+                    onChange={() => this.onChange()}
+                    ref="input"></input>
     }
     onChange(){
         var onChangeHandler = this.props.onChange;

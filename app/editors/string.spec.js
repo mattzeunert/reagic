@@ -23,7 +23,6 @@ describe("String Editor", function(){
 
     it("Renders label and input field", function(){
         expect(domNode.querySelector("input").value).toBe(data);
-        expect(domNode.querySelector("label").innerHTML).toBe(schema.title);
     });
 
     it("Calls onChange with new data when the value is edited", function(done){
