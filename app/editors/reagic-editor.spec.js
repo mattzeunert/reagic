@@ -4,7 +4,11 @@ var ReagicEditor = require("./reagic-editor.js");
 
 class EditorExample extends ReagicEditor {
     renderEditor(){
-        return <input></input>
+        return <input onChange={() => this.onChange()} ref="input"></input>
+    }
+    readData(value){
+        var newData = React.findDOMNode(this.refs.input).value;
+        return newData;
     }
 }
 
@@ -25,11 +29,15 @@ describe("ReagicEditor", function(){
             ]
         };
 
-        domNode = renderToDOMNode(
-            <EditorExample data={data} schema={schema} onChange={function(){
-                onChange.apply(this, arguments);
-            }}/>
-        );
+        this.renderDomNodeWithData = function(data){
+            return renderToDOMNode(
+                <EditorExample data={data} schema={schema} onChange={function(){
+                    onChange.apply(this, arguments);
+                }}/>
+            );
+        }
+
+        domNode = this.renderDomNodeWithData(data);
     });
 
     it("Renders the label with the field title", function(){
@@ -40,14 +48,8 @@ describe("ReagicEditor", function(){
         expect(domNode.querySelector("label").innerHTML).toContain("Looks good");
     });
 
-    it("Shows 'Fix this' if a value isn't valid", function(){
-        onChange = function(newData, info){
-            expect(domNode.querySelector("label").innerHTML).toContain("Fix this");
-            done();
-        }
-
-        var input = domNode.querySelector("input");
-        input.value = "";
-        React.addons.TestUtils.Simulate.change(input);
+    it("Shows 'Fix this' in indicator if a value isn't valid", function(){
+        domNode = this.renderDomNodeWithData("");
+        expect(domNode.querySelector("label").innerHTML).toContain("Fix this");
     });
 })

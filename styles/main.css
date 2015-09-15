@@ -1,8 +1,13 @@
 .reagic-generic {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
+    font-family: Arial;
 }
 
 .reagic-generic label {
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+}
+
+.reagic-generic input {
+    padding: 4px;
 }

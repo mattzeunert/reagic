@@ -10,15 +10,12 @@ class reactComponent extends ReagicEditor {
                     onChange={() => this.onChange()}
                     ref="input"></input>
     }
-    onChange(){
-        var onChangeHandler = this.props.onChange;
+    readData(){
         var newData = React.findDOMNode(this.refs.input).value;
         if (isNumeric()(newData)) {
             newData = parseFloat(newData);
         }
-        onChangeHandler(newData, {
-            isValid: this.checkValueIsValid(newData)
-        });
+        return newData;
     }
 }
 
