@@ -2,12 +2,19 @@ import React from "react";
 
 class ReagicEditor extends React.Component {
     render (){
-        var validationMessage = this.checkValueIsValid(this.props.data) ? "Looks good" : "Fix this";
-        console.log("VALIDATION", this.props.data, this.checkValueIsValid(this.props.data), validationMessage)
+        var valueIsValid = this.checkValueIsValid(this.props.data);
+        var validationMessage = valueIsValid ? "&#10004;" : "Fix this";
+        var validationMessageClass = "reagic-generic__validity-indicator ";
+        if (valueIsValid) {
+            validationMessageClass += "reagic-generic__validity-indicator--valid";
+        } else {
+            validationMessageClass += "reagic-generic__validity-indicator--invalid";
+        }
+
         return <div className="reagic-generic">
             <label>
                 {this.props.schema.title}
-                <span className="reagic-generic__validity-indicator">{validationMessage}</span>
+                <span className={validationMessageClass} dangerouslySetInnerHTML={{__html: validationMessage}}></span>
             </label>
             {this.renderEditor()}
         </div>
