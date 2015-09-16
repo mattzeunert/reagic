@@ -1,5 +1,5 @@
 var React = require("react");
-var StringEditor = require("./string.js").reactComponent;
+var StringEditor = require("./string.js");
 var renderToDOMNode = require("../render-to-dom-node.js");
 
 describe("String Editor", function(){

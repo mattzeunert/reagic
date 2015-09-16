@@ -13,7 +13,7 @@ module.exports =  {
                 validators = [];
             }
             schema[key] = {
-                editor: editor.name,
+                editor: editor.dataType,
                 title: generateTitle(key),
                 validators: validators
             }

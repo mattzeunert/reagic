@@ -2,7 +2,10 @@ import React from "react";
 var isNumeric  = require("../validators/is-numeric.js");
 var ReagicEditor = require("./reagic-editor.js");
 
-class reactComponent extends ReagicEditor {
+class NumberEditor extends ReagicEditor {
+    static automaticallyUseForData(data){
+        return typeof data === "number";
+    }
     renderEditor(){
         return  <input
                     type="text"
@@ -19,11 +22,7 @@ class reactComponent extends ReagicEditor {
     }
 }
 
-module.exports = {
-    name: "number",
-    defaultValidators: [isNumeric()],
-    shouldBeUsedForData: function(data){
-        return typeof data === "number";
-    },
-    reactComponent: reactComponent
-}
+NumberEditor.dataType = "number";
+NumberEditor.defaultValidators = [isNumeric()];
+
+module.exports = NumberEditor;

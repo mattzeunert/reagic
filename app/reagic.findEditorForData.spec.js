@@ -4,7 +4,7 @@ describe("findEditorForData", function(){
     it("returns the string editor for strings", function(){
         var editor = Reagic.findEditorForData("exampleString");
 
-        expect(editor.name).toBe("string");
+        expect(editor.dataType).toBe("string");
 
     })
 });

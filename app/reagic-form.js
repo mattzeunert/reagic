@@ -1,11 +1,13 @@
+
 import React from "react";
 var SchemaGenerator = require("./schema-generator.js");
 var Reagic = require("./reagic.js");
 
-class reactComponent extends React.Component {
+class ReagicForm extends React.Component {
     componentWillMount() {
         // Schema has to be in state, as data can become invalid
         var schema = SchemaGenerator.generateSchema(this.props.data);
+        console.log("Data", this.props.data)
         console.log("Schema", schema);
         this.setState({schema})
     }
@@ -18,7 +20,7 @@ class reactComponent extends React.Component {
         for (var key in schema){
             (function(key){
                 var value = schema[key];
-                var editor = Reagic.getEditorByName(value.editor).reactComponent;
+                var editor = Reagic.getEditorByName(value.editor);
                 fields.push(React.createElement(editor, {
                     data: data[key],
                     key: key,
@@ -42,4 +44,4 @@ class reactComponent extends React.Component {
     }
 }
 
-module.exports = reactComponent;
+module.exports = ReagicForm;

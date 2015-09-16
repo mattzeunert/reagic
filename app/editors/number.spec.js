@@ -1,5 +1,5 @@
 var React = require("react");
-var NumberEditor = require("./number.js").reactComponent;
+var NumberEditor = require("./number.js");
 var renderToDOMNode = require("../render-to-dom-node.js");
 
 describe("Number Editor", function(){

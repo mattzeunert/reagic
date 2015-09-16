@@ -1,7 +1,10 @@
 var React = require("react");
 var ReagicEditor = require("./reagic-editor.js");
 
-class reactComponent extends ReagicEditor {
+class StringEditor extends ReagicEditor {
+    static automaticallyUseForData(data){
+        return typeof data === "string";
+    }
     renderEditor(){
         return <input
                 type="text"
@@ -16,10 +19,7 @@ class reactComponent extends ReagicEditor {
     }
 }
 
-module.exports = {
-    name: "string",
-    shouldBeUsedForData: function(data){
-        return typeof data === "string";
-    },
-    reactComponent: reactComponent
-}
+StringEditor.dataType = "string";
+
+
+module.exports = StringEditor;
