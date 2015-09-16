@@ -5,5 +5,7 @@ module.exports = (() => function(value){
     if (isString) {
         isNumeric = isNumeric && /^[\d\.\,]+$/.test(value);
     }
-    return isNumeric;
+    return {
+        isValid: isNumeric
+    }
 })

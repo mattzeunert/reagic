@@ -12,7 +12,7 @@ class reactComponent extends ReagicEditor {
     }
     readData(){
         var newData = React.findDOMNode(this.refs.input).value;
-        if (isNumeric()(newData)) {
+        if (isNumeric()(newData).isValid) {
             newData = parseFloat(newData);
         }
         return newData;

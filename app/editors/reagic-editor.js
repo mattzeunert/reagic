@@ -33,7 +33,7 @@ class ReagicEditor extends React.Component {
 
         for (var i=0; i<validators.length; i++){
             var validatorFunction = validators[i];
-            if (!validatorFunction(value)) {
+            if (!validatorFunction(value).isValid) {
                 return {
                     isValid: false
                 }

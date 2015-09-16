@@ -24,7 +24,7 @@ describe("ReagicEditor", function(){
             title: "Greeting",
             validators: [
                 function(value){
-                    return value !== "";
+                    return {isValid: value !== ""};
                 }
             ]
         };
