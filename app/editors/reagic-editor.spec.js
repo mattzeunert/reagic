@@ -45,7 +45,7 @@ describe("ReagicEditor", function(){
     });
 
     it("Correctly shows that a field without any validators is valid", function(){
-        expect(domNode.querySelector("label").innerHTML).toContain("Looks good");
+        expect(domNode.querySelector("label").innerHTML).toContain("✔");
     });
 
     it("Shows 'Fix this' in indicator if a value isn't valid", function(){
