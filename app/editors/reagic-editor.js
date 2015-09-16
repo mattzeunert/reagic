@@ -12,9 +12,10 @@ class ReagicEditor extends React.Component {
         }
 
         var errorMessageElements = null;
-        if (validationResult) {
+        if (!validationResult.isValid && validationResult.errorMessage) {
             errorMessageElements = <div className="reagic-generic__validation-error">
-                {validationResult.errorMessage}
+                <div className="reagic-generic__validation-error-icon">!</div>
+                <div className="reagic-generic__validation-error-content">{validationResult.errorMessage}</div>
             </div>
         }
 
@@ -36,7 +37,6 @@ class ReagicEditor extends React.Component {
         if (validators === undefined){
             validators = [];
         }
-        console.log(validators);
 
         for (var i=0; i<validators.length; i++){
             var validatorFunction = validators[i];

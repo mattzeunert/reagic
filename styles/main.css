@@ -1,6 +1,8 @@
 .reagic-generic {
     margin-bottom: 24px;
     font-family: Arial;
+    width: 100%;
+    box-sizing: boder-box;
 }
 
 .reagic-generic label {
@@ -10,7 +12,10 @@
 }
 
 .reagic-generic input {
-    padding: 4px;
+    padding: 6px;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #ccc;
 }
 
 .reagic-generic__validity-indicator {
@@ -30,4 +35,30 @@
 .reagic-generic__validity-indicator--invalid {
     background: red;
     color: hsl(0, 100%, 98%);
+}
+
+.reagic-generic__validation-error {
+    background-color: #fee;
+    padding: 6px;
+    margin-top: 8px;
+    border-radius: 3px;
+    border: 1px solid #faa;
+    width: 100%;
+    position: relative;
+}
+
+.reagic-generic__validation-error-content {
+    padding-left: 30px;
+}
+
+.reagic-generic__validation-error-icon {
+    position: absolute;
+    background: #eb0000;
+    color: white;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    border-radius: 99999px;
+    line-height: 18px;
+    font-size: 14px;
 }

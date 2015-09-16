@@ -19,7 +19,8 @@ var App = React.createClass({
             height: "300px"
         }
         var fiftyPercentWidth = {
-            width: "50%"
+            width: "50%",
+            padding: "40px"
         }
         var stringifiedData = JSON.stringify(data, null, "    ");
         console.log(JSON.stringify(data))
