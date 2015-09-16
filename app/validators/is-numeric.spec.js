@@ -19,4 +19,8 @@ describe("isNumeric", function(){
         expect(isNumericInstance("asdfsdf").isValid).toBe(false);
         expect(isNumericInstance("888asdf").isValid).toBe(false);
     })
+
+    it("Generates an error message for invalid values", function(){
+        expect(isNumericInstance("aaa").errorMessage).toBe("Please enter a number.");
+    })
 });

@@ -5,7 +5,14 @@ module.exports = (() => function(value){
     if (isString) {
         isNumeric = isNumeric && /^[\d\.\,]+$/.test(value);
     }
-    return {
+
+    var response = {
         isValid: isNumeric
     }
+
+    if (!response.isValid) {
+        response.errorMessage = "Please enter a number.";
+    }
+
+    return response;
 })

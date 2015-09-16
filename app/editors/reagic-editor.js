@@ -2,13 +2,20 @@ import React from "react";
 
 class ReagicEditor extends React.Component {
     render (){
-        var valueIsValid = this.checkValueIsValid(this.props.data);
-        var validationMessage = valueIsValid ? "&#10004;" : "Fix this";
+        var validationResult = this.validateValue(this.props.data);
+        var validationMessage = validationResult.isValid ? "&#10004;" : "Fix this";
         var validationMessageClass = "reagic-generic__validity-indicator ";
-        if (valueIsValid) {
+        if (validationResult.isValid) {
             validationMessageClass += "reagic-generic__validity-indicator--valid";
         } else {
             validationMessageClass += "reagic-generic__validity-indicator--invalid";
+        }
+
+        var errorMessageElements = null;
+        if (validationResult) {
+            errorMessageElements = <div className="reagic-generic__validation-error">
+                {validationResult.errorMessage}
+            </div>
         }
 
         return <div className="reagic-generic">
@@ -17,11 +24,11 @@ class ReagicEditor extends React.Component {
                 <span className={validationMessageClass} dangerouslySetInnerHTML={{__html: validationMessage}}></span>
             </label>
             {this.renderEditor()}
+            {errorMessageElements}
         </div>
     }
     checkValueIsValid (value){
         var validationResult = this.validateValue(value);
-        console.log("validated value", value, "and got", validationResult)
         return validationResult.isValid;
     }
     validateValue (value){
@@ -33,9 +40,11 @@ class ReagicEditor extends React.Component {
 
         for (var i=0; i<validators.length; i++){
             var validatorFunction = validators[i];
-            if (!validatorFunction(value).isValid) {
+            var validationResponse = validatorFunction(value);
+            if (!validationResponse.isValid) {
                 return {
-                    isValid: false
+                    isValid: false,
+                    errorMessage: validationResponse.errorMessage
                 }
             }
         }

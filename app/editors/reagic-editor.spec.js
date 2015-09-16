@@ -24,7 +24,11 @@ describe("ReagicEditor", function(){
             title: "Greeting",
             validators: [
                 function(value){
-                    return {isValid: value !== ""};
+                    var isValid = value !== "";
+                    return {
+                        isValid: isValid,
+                        errorMessage: isValid ? undefined : "Error Message"
+                    };
                 }
             ]
         };
@@ -51,5 +55,6 @@ describe("ReagicEditor", function(){
     it("Shows 'Fix this' in indicator if a value isn't valid", function(){
         domNode = this.renderDomNodeWithData("");
         expect(domNode.querySelector("label").innerHTML).toContain("Fix this");
+        expect(domNode.querySelector(".reagic-generic__validation-error").innerHTML).toContain("Error Message");
     });
 })
