@@ -47,6 +47,10 @@
     position: relative;
 }
 
+.reagic-generic--user-is-editing .reagic-generic__validation-error {
+    opacity: .2;
+}
+
 .reagic-generic__validation-error-content {
     padding-left: 30px;
 }

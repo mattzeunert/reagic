@@ -7,14 +7,20 @@ class ReagicEditor extends React.Component {
         this.state = {
             userIsEditing: false
         }
-        this.resetUserIsEditing = debounce(
-            () => this.setState({userIsEditing: false})
-            , 300
-        );
+        var _this = this;
+        this.resetUserIsEditing = debounce(function(){
+            _this.setState({userIsEditing: false})
+            _this.updateValidationResult();
+        }, 300);
+    }
+    componentWillMount(){
+        this.updateValidationResult();
     }
     render (){
-        var validationResult = this.validateValue(this.props.data);
+
+        var validationResult = this.state.validationResult;
         var validationMessage = validationResult.isValid ? "&#10004;" : "Fix this";
+
         var validationMessageClass = "reagic-generic__validity-indicator ";
         if (validationResult.isValid) {
             validationMessageClass += "reagic-generic__validity-indicator--valid";
@@ -30,7 +36,12 @@ class ReagicEditor extends React.Component {
             </div>
         }
 
-        return <div className="reagic-generic">
+        var className = "reagic-generic ";
+        if (this.state.userIsEditing) {
+            className += " reagic-generic--user-is-editing";
+        }
+
+        return <div className={className}>
             <label>
                 {this.state.userIsEditing ? "yes" : "no"}
                 {this.props.schema.title}
@@ -39,6 +50,12 @@ class ReagicEditor extends React.Component {
             {this.renderEditor()}
             {errorMessageElements}
         </div>
+    }
+    updateValidationResult(){
+        var data = this.props.data;
+        this.setState({
+            validationResult: this.validateValue(data)
+        });
     }
     checkValueIsValid (value){
         var validationResult = this.validateValue(value);
