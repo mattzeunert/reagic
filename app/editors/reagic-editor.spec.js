@@ -57,4 +57,29 @@ describe("ReagicEditor", function(){
         expect(domNode.querySelector("label").innerHTML).toContain("Fix this");
         expect(domNode.querySelector(".reagic-generic__validation-error").innerHTML).toContain("Error Message");
     });
+
+
+    it("It sets userIsEditing to true on onChange, then reverts back after 300ms", function(done){
+        function expectUserIsEditing(value){
+            expect(component.state.userIsEditing).toBe(value);
+        }
+
+        expectUserIsEditing(false);
+        var input = domNode.querySelector("input");
+        input.value = "aa";
+        React.addons.TestUtils.Simulate.change(input);
+        expectUserIsEditing(true);
+        input.value = "aa";
+        React.addons.TestUtils.Simulate.change(input);
+        expectUserIsEditing(true);
+
+        setTimeout(function(){
+            expectUserIsEditing(true);
+        }, 50)
+
+        setTimeout(function(){
+            expectUserIsEditing(false);
+            done();
+        }, 350);
+    });
 })
