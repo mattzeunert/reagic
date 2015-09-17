@@ -3,7 +3,9 @@ module.exports = (() => function(value){
     var isString = typeof value === "string";
     var isNumeric = !isNaN(parseFloat(value));
     if (isString) {
-        isNumeric = isNumeric && /^[\d\.\,]+$/.test(value);
+        isNumeric = isNumeric && /^[\d\.]+$/.test(value);
+        var numberEndsOnDecimalPoint = /\.$/.test(value);
+        isNumeric = isNumeric && !numberEndsOnDecimalPoint;
     }
 
     var response = {

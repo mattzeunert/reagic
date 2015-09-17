@@ -17,7 +17,6 @@ class ReagicEditor extends React.Component {
         this.updateValidationResult();
     }
     render (){
-
         var validationResult = this.state.validationResult;
         var validationMessage = validationResult.isValid ? "&#10004;" : "Fix this";
 

@@ -20,7 +20,13 @@ describe("isNumeric", function(){
         expect(isNumericInstance("888asdf").isValid).toBe(false);
     })
 
+    it("Detects that strings ending on a decimal point aren't numeric", function(){
+        expect(isNumericInstance("44.").isValid).toBe(false);
+    })
+
     it("Generates an error message for invalid values", function(){
         expect(isNumericInstance("aaa").errorMessage).toBe("Please enter a number.");
     })
+
+
 });
