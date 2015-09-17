@@ -1,5 +1,4 @@
 var React = require("react");
-var renderToDOMNode = require("../render-to-dom-node.js");
 var ReagicEditor = require("./reagic-editor.js");
 
 class EditorExample extends ReagicEditor {
@@ -14,6 +13,7 @@ class EditorExample extends ReagicEditor {
 
 describe("ReagicEditor", function(){
     var data,
+        component,
         domNode,
         onChange,
         schema;
@@ -34,14 +34,15 @@ describe("ReagicEditor", function(){
         };
 
         this.renderDomNodeWithData = function(data){
-            return renderToDOMNode(
+            component = React.addons.TestUtils.renderIntoDocument(
                 <EditorExample data={data} schema={schema} onChange={function(){
                     onChange.apply(this, arguments);
                 }}/>
             );
+            domNode = React.findDOMNode(component);
         }
 
-        domNode = this.renderDomNodeWithData(data);
+        this.renderDomNodeWithData(data);
     });
 
     it("Renders the label with the field title", function(){
@@ -53,7 +54,7 @@ describe("ReagicEditor", function(){
     });
 
     it("Shows 'Fix this' in indicator if a value isn't valid", function(){
-        domNode = this.renderDomNodeWithData("");
+        this.renderDomNodeWithData("");
         expect(domNode.querySelector("label").innerHTML).toContain("Fix this");
         expect(domNode.querySelector(".reagic-generic__validation-error").innerHTML).toContain("Error Message");
     });
@@ -63,15 +64,14 @@ describe("ReagicEditor", function(){
         function expectUserIsEditing(value){
             expect(component.state.userIsEditing).toBe(value);
         }
+        onChange = function(){}
 
         expectUserIsEditing(false);
         var input = domNode.querySelector("input");
         input.value = "aa";
         React.addons.TestUtils.Simulate.change(input);
-        expectUserIsEditing(true);
         input.value = "aa";
         React.addons.TestUtils.Simulate.change(input);
-        expectUserIsEditing(true);
 
         setTimeout(function(){
             expectUserIsEditing(true);

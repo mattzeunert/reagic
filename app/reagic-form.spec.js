@@ -1,21 +1,20 @@
 var ReagicForm = require("./reagic-form.js");
 var React = require('react/addons');
+var renderToDOMNode = require("./render-to-dom-node.js");
 
 describe("ReagicForm Component", function(){
     var data = {
           name: "Tom"
         },
         domNode,
-        component,
         onChange;
 
     beforeEach(function(){
-        component = React.addons.TestUtils.renderIntoDocument(
+        domNode = renderToDOMNode(
             <ReagicForm data={data} onChange={function(){
                 onChange.apply(this, arguments);
             }} />
         );
-        domNode = React.findDOMNode(component);
     })
 
     it("Renders an input", function(){

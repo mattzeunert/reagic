@@ -1,6 +1,17 @@
 import React from "react";
+import debounce from "debounce";
 
 class ReagicEditor extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+            userIsEditing: false
+        }
+        this.resetUserIsEditing = debounce(
+            () => this.setState({userIsEditing: false})
+            , 300
+        );
+    }
     render (){
         var validationResult = this.validateValue(this.props.data);
         var validationMessage = validationResult.isValid ? "&#10004;" : "Fix this";
@@ -21,6 +32,7 @@ class ReagicEditor extends React.Component {
 
         return <div className="reagic-generic">
             <label>
+                {this.state.userIsEditing ? "yes" : "no"}
                 {this.props.schema.title}
                 <span className={validationMessageClass} dangerouslySetInnerHTML={{__html: validationMessage}}></span>
             </label>
@@ -53,6 +65,9 @@ class ReagicEditor extends React.Component {
     onChange(){
         var onChangeHandler = this.props.onChange;
         var newData = this.readData();
+
+        this.setState({userIsEditing: true});
+        this.resetUserIsEditing();
         onChangeHandler(newData, {isValid: this.checkValueIsValid(newData)});
     }
 }
