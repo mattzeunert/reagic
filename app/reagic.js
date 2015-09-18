@@ -1,8 +1,9 @@
 var StringEditor = require("./editors/string.js");
 var NumberEditor = require("./editors/number.js");
+var ObjectEditor = require("./editors/object.js");
 
 var Reagic = {
-    editors: [StringEditor, NumberEditor],
+    editors: [StringEditor, NumberEditor, ObjectEditor],
     getEditorByName: function(name){
         for (var i=0; i<this.editors.length;i++){
             if (this.editors[i].dataType === name){
