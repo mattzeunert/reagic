@@ -41,4 +41,35 @@ describe("Schema Generation", function(){
             }
         );
     })
+
+    it("Can generate a schema for nested objects", function(){
+        var data = {
+            owner: {
+                address: {
+                    city: "Paris"
+                }
+            }
+        }
+
+        var schema = schemaGenerator.generateSchema(data);
+        expect(schema).toEqual({
+                owner: {
+                    editor: "object",
+                    title: "Owner",
+                    properties: {
+                        address: {
+                            editor: "object",
+                            title: "Address",
+                            properties: {
+                                city: {
+                                    editor: "string",
+                                    title: "City"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        );
+    })
 })
