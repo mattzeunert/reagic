@@ -1,41 +1,21 @@
-
 import React from "react";
 var SchemaGenerator = require("./schema-generator.js");
-var Reagic = require("./reagic.js");
+var ObjectEditor = require("./editors/object.js");
 
-class ReagicForm extends React.Component {
+class reactComponent extends React.Component {
     componentWillMount() {
         // Schema has to be in state, as data can become invalid
         var schema = SchemaGenerator.generateSchema(this.props.data);
-        console.log("Data", this.props.data)
-        console.log("Schema", schema);
+        console.log("")
         this.setState({schema})
     }
     render(){
-        var self = this;
-        var data = this.props.data;
-        var schema = this.state.schema;
-
-        var fields = [];
-        for (var key in schema){
-            (function(key){
-                var value = schema[key];
-                var editor = Reagic.getEditorByName(value.editor);
-                fields.push(React.createElement(editor, {
-                    data: data[key],
-                    key: key,
-                    schema: value,
-                    onChange: function(newDataValue){
-                        data[key] = newDataValue;
-                        self.onChange(data);
-                    }
-                }));
-            })(key);
+        var schema = {
+            type: "object",
+            properties: this.state.schema
         }
-
-        return <div>
-            {fields}
-        </div>
+        debugger;
+        return <ObjectEditor data={this.props.data} schema={schema} onChange={this.onChange.bind(this)} />
     }
     onChange(newData){
         // Ever so slightly inefficient deep copy
@@ -44,4 +24,4 @@ class ReagicForm extends React.Component {
     }
 }
 
-module.exports = ReagicForm;
+module.exports = reactComponent;

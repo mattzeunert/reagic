@@ -10,6 +10,7 @@ var Reagic = {
                 return this.editors[i];
             }
         }
+        console.error("Couldn't find editor for type " + name);
     },
     findEditorForData: function(data){
         for (var i=0; i<Reagic.editors.length; i++) {

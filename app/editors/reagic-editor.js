@@ -40,6 +40,8 @@ class ReagicEditor extends React.Component {
             className += " reagic-generic--user-is-editing";
         }
 
+        console.log("renderEditor", this.props)
+
         return <div className={className}>
             <label>
                 {this.state.userIsEditing ? "yes" : "no"}
