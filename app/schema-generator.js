@@ -19,7 +19,7 @@ var schemaGenerator = {
 
             var validators = editor.defaultValidators;
             if (validators) {
-                schema[key][validators] = validators;
+                schema[key].validators = validators;
             }
 
         }

@@ -9,7 +9,7 @@ class ReagicEditor extends React.Component {
         }
         var _this = this;
         this.resetUserIsEditing = debounce(function(){
-            _this.setState({userIsEditing: false})
+            _this.setState({userIsEditing: false});
             _this.updateValidationResult();
         }, 300);
     }
