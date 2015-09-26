@@ -7,7 +7,7 @@ describe("Schema Generation", function(){
         };
 
         var schema = schemaGenerator.generateSchema(data);
-        expect(schema.greeting.editor).toBe("string");
+        expect(schema.properties.greeting.editor).toBe("string");
     });
 
     it("Knows that numbers should use the number Editor", function(){
@@ -16,7 +16,7 @@ describe("Schema Generation", function(){
         };
 
         var schema = schemaGenerator.generateSchema(data);
-        expect(schema.age.editor).toBe("number");
+        expect(schema.properties.age.editor).toBe("number");
     });
 
     it("Can generate a schema for objects", function(){
@@ -28,6 +28,8 @@ describe("Schema Generation", function(){
 
         var schema = schemaGenerator.generateSchema(data);
         expect(schema).toEqual({
+            editor: "object",
+            properties: {
                 owner: {
                     editor: "object",
                     title: "Owner",
@@ -39,7 +41,7 @@ describe("Schema Generation", function(){
                     }
                 }
             }
-        );
+        });
     })
 
     it("Can generate a schema for nested objects", function(){
@@ -53,6 +55,8 @@ describe("Schema Generation", function(){
 
         var schema = schemaGenerator.generateSchema(data);
         expect(schema).toEqual({
+            editor: "object",
+            properties: {
                 owner: {
                     editor: "object",
                     title: "Owner",
@@ -70,6 +74,6 @@ describe("Schema Generation", function(){
                     }
                 }
             }
-        );
+        });
     })
 })
