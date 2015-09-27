@@ -35,6 +35,9 @@ class ObjectEditor extends ReagicEditor {
     readData(){
         return  this.props.data;
     }
+    getClassName(){
+        return "reagic-object-editor";
+    }
 }
 
 ObjectEditor.dataType = "object";

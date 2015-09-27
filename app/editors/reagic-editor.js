@@ -36,18 +36,23 @@ class ReagicEditor extends React.Component {
         }
 
         var className = "reagic-generic ";
+        if (this.getClassName) {
+            className += this.getClassName() + " ";
+        }
         if (this.state.userIsEditing) {
             className += " reagic-generic--user-is-editing";
         }
 
-        console.log("renderEditor", this.props)
-
-        return <div className={className}>
-            <label>
-                {this.state.userIsEditing ? "yes" : "no"}
+        var label;
+        if (this.props.schema.title) {
+           label = <label>
                 {this.props.schema.title}
                 <span className={validationMessageClass} dangerouslySetInnerHTML={{__html: validationMessage}}></span>
             </label>
+        }
+
+        return <div className={className}>
+            {label}
             {this.renderEditor()}
             {errorMessageElements}
         </div>
